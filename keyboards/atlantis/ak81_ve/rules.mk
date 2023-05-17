@@ -1,9 +1,3 @@
-# MCU name
-MCU = atmega32u4
-
-# Bootloader selection
-BOOTLOADER = atmel-dfu
-
 # Build Options
 #   change yes to no to disable
 #
@@ -15,8 +9,9 @@ COMMAND_ENABLE = no         # Commands for debug and configuration
 NKRO_ENABLE = yes           # Enable N-Key Rollover
 BACKLIGHT_ENABLE = no       # Keyboard backlight functionality
 RGBLIGHT_ENABLE = no        # Keyboard RGB underglow
-RGB_MATRIX_ENABLE = yes		# Enable RGB matrix effects
-RGB_MATRIX_DRIVER = WS2812
 AUDIO_ENABLE = no           # Audio output
+RGB_MATRIX_ENABLE = yes
+RGB_MATRIX_DRIVER = WS2812
+LTO_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 ENCODER_ENABLE = yes
