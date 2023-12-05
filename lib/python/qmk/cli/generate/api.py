@@ -10,7 +10,7 @@ from qmk.datetime import current_datetime
 from qmk.info import info_json
 from qmk.json_schema import json_load
 from qmk.keymap import list_keymaps
-from qmk.keyboard import find_readme, list_keyboards
+from qmk.keyboard import find_readme, list_keyboards, keyboard_alias_definitions
 from qmk.keycodes import load_spec, list_versions, list_languages
 
 DATA_PATH = Path('data')
@@ -64,6 +64,12 @@ def _filtered_copy(src, dst):
 
         dst = dst.with_suffix('.json')
         dst.write_text(json.dumps(data, separators=(',', ':')), encoding='utf-8')
+        return dst
+
+    if dst.suffix == '.jsonschema':
+        data = json_load(src)
+
+        dst.write_text(json.dumps(data), encoding='utf-8')
         return dst
 
     return shutil.copy2(src, dst)
@@ -160,7 +166,7 @@ def generate_api(cli):
 
     # Generate data for the global files
     keyboard_list = sorted(kb_all)
-    keyboard_aliases = json_load(Path('data/mappings/keyboard_aliases.hjson'))
+    keyboard_aliases = keyboard_alias_definitions()
     keyboard_metadata = {
         'last_updated': current_datetime(),
         'keyboards': keyboard_list,
