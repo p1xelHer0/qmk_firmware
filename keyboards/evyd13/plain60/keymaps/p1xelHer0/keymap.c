@@ -1,11 +1,11 @@
 #include QMK_KEYBOARD_H
 
-#define PXL_BASE_ALT 0
-#define PXL_BASE_CMD 1
-#define PXL_FN       2
-#define PXL_HHKB     3
-#define PXL_HHKB_ALT 4
-#define PXL_HHKB_CMD 5
+#define PXL_BASE_ALT   0
+#define PXL_BASE_MACOS 1
+#define PXL_FN         2
+#define PXL_HHKB       3
+#define PXL_HHKB_ALT   4
+#define PXL_HHKB_CMD   5
 
 enum custom_keycodes
 {
@@ -32,7 +32,7 @@ const uint32_t PROGMEM unicode_map[] = {
 };
 
 #define D_B_ALT DF(PXL_BASE_ALT)
-#define D_B_CMD DF(PXL_BASE_CMD)
+#define D_B_CMD DF(PXL_BASE_MACOS)
 #define M_H_ALT MO(PXL_HHKB_ALT)
 #define M_H_CMD MO(PXL_HHKB_CMD)
 #define M_FN    MO(PXL_FN)
@@ -48,15 +48,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSPC,
     KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_BSLS, KC_ENT,
     KC_LSFT, XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, M_H_ALT,
-    XXXXXXX, M_FN,    KC_LALT,                            KC_SPC,                             XXXXXXX, KC_LWIN, M_FN,    XXXXXXX
+    XXXXXXX, M_FN,    KC_LALT,                            KC_SPC,                             XXXXXXX, KC_LGUI, M_FN,    XXXXXXX
   ),
 
-  [PXL_BASE_CMD] = LAYOUT(
+  [PXL_BASE_MACOS] = LAYOUT(
     KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSLS,  KC_GRV,
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSPC,
     KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_BSLS, KC_ENT,
     KC_LSFT, XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, M_H_CMD,
-    XXXXXXX, M_FN,    KC_LCMD,                            KC_SPC,                             XXXXXXX,   KC_LALT, M_FN,  XXXXXXX
+    XXXXXXX, KC_LOPT, KC_LCMD,                            KC_SPC,                             XXXXXXX, KC_ROPT, M_FN,    XXXXXXX
   ),
 
   [PXL_HHKB] = LAYOUT(
@@ -101,10 +101,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       switch (biton32(layer_state))
       {
         case PXL_BASE_ALT:
-          set_single_persistent_default_layer(PXL_BASE_CMD);
+          set_single_persistent_default_layer(PXL_BASE_MACOS);
           set_unicode_input_mode(UNICODE_MODE_MACOS);
           return false;
-        case PXL_BASE_CMD:
+        case PXL_BASE_MACOS:
           set_single_persistent_default_layer(PXL_BASE_ALT);
           set_unicode_input_mode(UNICODE_MODE_WINDOWS);
           return false;
