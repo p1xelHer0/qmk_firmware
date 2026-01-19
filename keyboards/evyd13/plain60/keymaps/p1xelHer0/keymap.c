@@ -24,7 +24,7 @@ enum unicode_names
 
 const uint32_t PROGMEM unicode_map[] = {
   [SE_AA_LC] = 0x00E5,  // å
-  [SE_AA_LC] = 0x00E4,  // ä
+  [SE_AE_LC] = 0x00E4,  // ä
   [SE_OE_LC] = 0x00F6,  // ö
   [SE_AA_UC] = 0x00C5,  // Å
   [SE_AE_UC] = 0x00C4,  // Ä
